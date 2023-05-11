@@ -11,7 +11,6 @@
       <#list map?keys as key>
         ${key}
       </#list>
-
     }
   },
   "myList": {
