@@ -5,15 +5,25 @@ package com.apps.model;
  * @Date 2023/5/11
  */
 public class Student {
-    private String name;
+    private String uuid;
+    private String userName;
     private Integer age;
 
-    public String getName() {
-        return name;
+
+    public String getUuid() {
+        return uuid;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Integer getAge() {
