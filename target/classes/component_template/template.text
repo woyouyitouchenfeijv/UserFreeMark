@@ -1,0 +1,77 @@
+{
+  "id":"123",
+  //输出变量的值。
+  "variable": "${variable}",
+  //输出对象的属性值。
+  "student":{
+    "age": "${student.age}",
+    "name": "${student.userName}"
+  },
+  "myMap": {
+    //输出 Map 中指定 key 的值。
+    "mapKey": "${map.key}",
+    "allKeys": {
+      //输出变量中所有的键
+      <#list map?keys as key>
+        ${key}
+      </#list>
+    }
+    //输出变量中所有的值
+    <#list map?values as v>
+        ${v}
+    </#list>
+  },
+
+  "myList": {
+    //输出列表中指定位置的值。
+    "myList-1": "${list[0]}",
+    "myList-2": "${list[1]}",
+    //输出变量的长度（对于字符串、列表或数组）或元素个数
+    "size": "${list?size}"
+  },
+  "null-value": {
+    //如果变量值为 null，则输出 defaultValue 值
+    "null": "${nullValue!'默认值'}",
+    "notNull": "${notNullValue!aaa}"
+  },
+  "isInteger":${isInteger}
+   ${capFirst?cap_first}
+
+   //将变量转义为 HTML 格式输出
+   ${capFirst?html}
+   //将变量转换为小写字母后输出
+   ${lowerCase?lower_case}
+   //将变量转换为大写字母后输出。
+   ${upperCase?upper_case}
+   //将变量转换为日期格式输出。
+   ${now?string("yyyy-MM-dd HH:mm:ss")}
+   ${now?string("yyyy-MM-dd")}
+   //将变量转换为数字格式输出。
+   ${numbers?number}
+   //将变量格式化为货币金额输出
+   ${money?c}
+
+   //if、elseif、else：用于条件语句的指令。
+   <#if x == 1>
+     <p>x is 1.</p>
+   <#elseif x == 2>
+     <p>x is 2.</p>
+   <#elseif x == 3>
+     <p>x is 3.</p>
+   <#else>
+     <p>x is not 1, 2 or 3.</p>
+   </#if>
+
+   //list 对象
+   <#list studentList as st>
+       ${st.name} costs ${st.age}
+   </#list>
+   <#if nullList?size == 0>
+       No nullList found.
+   </#if>
+
+
+
+
+
+}
