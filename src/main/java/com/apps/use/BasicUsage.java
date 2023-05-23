@@ -70,9 +70,6 @@ public class BasicUsage {
         root.put("studentList",studentList);
         root.put("nullList",new ArrayList<>(0));
 
-
-        //用java 区分 模块，形成日报的初级模板，然后调用人工智能分词
-
         String template = FreeMarkUtil.process("template", root);
         System.out.println(template);
     }
