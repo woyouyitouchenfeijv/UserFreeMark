@@ -64,11 +64,13 @@
 
    //list 对象
    <#list studentList as st>
-       ${st.name} costs ${st.age}
+        ${st.userName} costs ${st.age}
    </#list>
    <#if nullList?size == 0>
-       No nullList found.
+        No nullList found.
    </#if>
+   //引用include
+   <#include "content_template.ftl">
 
 
 

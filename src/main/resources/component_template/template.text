@@ -69,6 +69,8 @@
    <#if nullList?size == 0>
         No nullList found.
    </#if>
+   //引用include
+   <#include "content_template.ftl">
 
 
 
