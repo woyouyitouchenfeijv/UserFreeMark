@@ -2,7 +2,7 @@
 <#list thisWeek as projectMap>
 ${projectMap.project}
 <#list projectMap?values as s>
-<#if ! s?contains("一、") >
+<#if ! s?contains("、") >
 ${s}
 </#if>
 </#list>

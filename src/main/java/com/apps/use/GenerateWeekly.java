@@ -10,9 +10,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author
@@ -29,7 +27,7 @@ public class GenerateWeekly {
         //拿到数据
         String weekly = getWeekly("/Users/dengxu/Desktop/新文件.json");
         HashMap<String, Object> root = new HashMap<>();
-        List<HashMap<String, Object>> list = new ArrayList<>();
+        List<Map<String, Object>> list = new ArrayList<>();
         Type type = new TypeToken<List<PeopleVo>>() {}.getType();
         List<PeopleVo> sDeptList = new Gson().fromJson(weekly, type);
 
@@ -41,24 +39,40 @@ public class GenerateWeekly {
             List<WorkItemInfo> workItemInfos = peopleVo.getwList();
             for (int j = 0; j < workItemInfos.size(); j++) {
                 WorkItemInfo workItemInfo = workItemInfos.get(j);
-                List<WorkItemInfo> workList = map.get(workItemInfo.getTaskName());
-                if(workList == null){
-                    workList = new ArrayList<>();
+                String projectName = workItemInfo.getProjectName();
+                if("2023年度实施与支持业务单元项目".equals(projectName)){
+                    List<WorkItemInfo> workList = map.get(workItemInfo.getTaskName());
+                    if(workList == null){
+                        workList = new ArrayList<>();
+                    }
+                    workList.add(workItemInfo);
+                    map.put(workItemInfo.getTaskName(),workList);
+
+                }else{
+                    List<WorkItemInfo> workList = map.get(projectName);
+                    if(workList == null){
+                        workList = new ArrayList<>();
+                    }
+                    workList.add(workItemInfo);
+                    map.put(projectName,workList);
                 }
-                workList.add(workItemInfo);
-                map.put(workItemInfo.getTaskName(),workList);
+
+
+
             }
         }
 
+        int num = 1;
 
         for (String WorkName : map.keySet()) {
 
             List<WorkItemInfo> workItemInfos = map.get(WorkName);
-            HashMap<String, Object> projectMap = new HashMap<>();
-            projectMap.put("project", ChineseUtil.numberToChinese(1) + "、" + WorkName);
+            Map<String, Object> projectMap = new LinkedHashMap<>();
+            projectMap.put("project", ChineseUtil.numberToChinese(num++) + "、" + WorkName);
             for (int i = 0; i < workItemInfos.size(); i++) {
                 WorkItemInfo workItemInfo = workItemInfos.get(i);
-                projectMap.put((i+1)+"", workItemInfo.getWorkName()+","+workItemInfo.getDescription());
+                String info = workItemInfo.getDescription()==null?"":","+workItemInfo.getDescription();
+                projectMap.put((i+1)+"", (i+1)+"."+workItemInfo.getWorkName()+info);
             }
             list.add(projectMap);
 
