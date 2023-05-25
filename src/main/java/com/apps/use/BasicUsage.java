@@ -1,6 +1,6 @@
 package com.apps.use;
 
-import com.apps.model.Student;
+import com.apps.model.StudentDo;
 import com.apps.util.FreeMarkUtil;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class BasicUsage {
         root.put("variable","输出变量的值。");
 
         //${object.property}：输出对象的属性值。
-        Student student = new Student();
+        StudentDo student = new StudentDo();
         student.setAge(18);
         student.setUserName("小陈");
         root.put("student",student);
@@ -60,9 +60,9 @@ public class BasicUsage {
         root.put("x",1);
 
         //list 对象
-        ArrayList<Student> studentList = new ArrayList<>(4);
+        ArrayList<StudentDo> studentList = new ArrayList<>(4);
         for (int i = 0; i < 4; i++) {
-            Student s = new Student();
+            StudentDo s = new StudentDo();
             s.setUserName("name"+i);
             s.setAge(18+i);
             studentList.add(s);
@@ -70,7 +70,7 @@ public class BasicUsage {
         root.put("studentList",studentList);
         root.put("nullList",new ArrayList<>(0));
 
-        String template = FreeMarkUtil.process("template", root);
+        String template = FreeMarkUtil.process("template.text", root);
         System.out.println(template);
     }
 }

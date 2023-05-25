@@ -4,7 +4,7 @@ package com.apps.model;
  * @Description
  * @Date 2023/5/11
  */
-public class Student {
+public class StudentDo {
     private String uuid;
     private String userName;
     private Integer age;

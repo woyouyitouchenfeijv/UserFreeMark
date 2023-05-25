@@ -32,7 +32,7 @@ public class FreeMarkUtil {
         cfg.setTemplateLoader(mul);
 
         //创建模版对象
-        Template t = cfg.getTemplate(templateName+".text");
+        Template t = cfg.getTemplate(templateName);
 
         //设置输出流
         StringWriter writer = new StringWriter();
