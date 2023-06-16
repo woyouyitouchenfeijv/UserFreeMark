@@ -1,0 +1,1 @@
+<#assign value = "Hello from Template B">

@@ -33,7 +33,7 @@ public class FreeMarkUtil {
 
         //创建模版对象
         Template t = cfg.getTemplate(templateName);
-
+        cfg.setSharedVariable("generateUuid", new GenerateUuid());
         //设置输出流
         StringWriter writer = new StringWriter();
         String result = "";
